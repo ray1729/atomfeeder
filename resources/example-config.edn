@@ -1,0 +1,15 @@
+{:credentials {
+
+               :bitly {:access-token "BITLY ACCESS TOKEN"}
+
+               :twitter {:consumer-key "TWITTER CONSUMER KEY"
+                         :consumer-secret "TWITTER CONSUMER SECRET"
+                         :access-token "TWITTER ACCESS TOKEN" 
+                         :access-token-secret "TWITTER ACCESS SECRET"}}
+
+ :transaction-log "/tmp/atomfeed.tlog"
+ 
+ :max-age "2 weeks"
+
+ :sources [{:url "http://www.1729.org.uk/feed" :sinks [:twitter]}
+           {:url "http://www.learningclojure.com/feeds/posts/default" :link-rel "alternate" :sinks [:twitter]}]}
