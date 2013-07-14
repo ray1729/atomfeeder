@@ -22,8 +22,8 @@
     (catch java.io.FileNotFoundException _ {})))
 
 (defn build-message
-  [entry]
-  (loop [msg (str (:title entry) " " (:short-url entry)) tags (:tags entry)]
+  [preamble entry]
+  (loop [msg (str preamble " " (:title entry) " " (:short-url entry)) tags (:tags entry)]
     (if-let [t (first tags)]
       (if (<= (+ (count msg) (count t) 2) *max-msg-len*)
         (recur (str msg " #" (str/replace t #"\s" "_")) (rest tags))
@@ -31,10 +31,10 @@
       msg)))
 
 (defn send-notification
-  [context sink entry opts]
+  [context source sink entry opts]
   (log/info "send-notification" sink entry)
   (let [short-url (:url ((:bitly-client context) :shorten {:longURL (:link entry)}))
-        message-text (build-message (assoc entry :short-url short-url))]
+        message-text (build-message (:preamble source) (assoc entry :short-url short-url))]
     (log/debug "Message" message-text)
     (when-not (:dry-run opts)
       (case sink
@@ -57,7 +57,7 @@
               sink   (:sinks source)]
         (when (not= :sent (get-in state [(:id entry) sink :status]))
           (try 
-            (send-notification context sink entry opts)
+            (send-notification context source sink entry opts)
             (when-not (:dry-run opts)
               (.write tlog (prn-str {:id (:id entry) :sink sink :status :sent})))
             (catch Exception e (log/error e))))))))

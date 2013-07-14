@@ -1,4 +1,4 @@
-(defproject uk.org.1729/atomfeeder "0.1.0-SNAPSHOT"
+(defproject uk.org.1729/atomfeeder "0.1.0"
   :description "Program to periodically parse atom feed and tweet about new articles."
   :url "https://github.com/ray1729/atomfeeder"
   :license {:name "Eclipse Public License"

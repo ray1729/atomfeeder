@@ -11,5 +11,10 @@
  
  :max-age "2 weeks"
 
- :sources [{:url "http://www.1729.org.uk/feed" :sinks [:twitter]}
-           {:url "http://www.learningclojure.com/feeds/posts/default" :link-rel "alternate" :sinks [:twitter]}]}
+ :sources [{:url "http://www.1729.org.uk/feed"
+            :sinks [:twitter]
+            :preamble "New blog post:"}
+           {:url "http://www.learningclojure.com/feeds/posts/default"
+            :link-rel "alternate"
+            :sinks [:twitter]
+            :preamble "New from Learnin Clojure blog:"}]}

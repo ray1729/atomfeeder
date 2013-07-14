@@ -20,8 +20,9 @@
           "month" (ct/months n))))))
 
 (def-map-schema source-schema
-  [[:url]                      URL
+  [[:url]                      URL   
    (optional-path [:link-rel]) NonEmptyString
+   (optional-path [:preamble]) NonEmptyString
    [:sinks]                    (sequence-of (OneOf :twitter))])
 
 (def-map-schema config-schema
