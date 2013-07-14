@@ -14,8 +14,8 @@ Clone this git repository.
 This utility requires credentials for Bitly and Twitter. You will have
 to register the application with each service and generate the
 appropriate access tokens; see
-[http://dev.bitly.com/my_apps.html](Bitly) and
-[https://dev.twitter.com/docs/auth/tokens-devtwittercom](Twitter).
+http://dev.bitly.com/my_apps.html and
+https://dev.twitter.com/docs/auth/tokens-devtwittercom
 
 Once you have the required OAuth tokens, take a copy of the example
 configuration (resources/example-config.edn) and edit appropriately.
